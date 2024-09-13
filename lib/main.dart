@@ -128,7 +128,7 @@ class _AudioRecorderPageState extends State<AudioRecorderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Audio Recorder'),
+        title: const Text('Audio Recorder'),
       ),
       body: Column(
         children: [
@@ -154,24 +154,28 @@ class _AudioRecorderPageState extends State<AudioRecorderPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed:
-                        File(_recordingPath).existsSync() ? _playRecording : null,
+                    onPressed: File(_recordingPath).existsSync()
+                        ? _playRecording
+                        : null,
                     child: Text(_isPlaying ? 'Stop' : 'Play'),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Recording Duration: ${_formatDuration(_recordingDuration)}',
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   if (_showMessage)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'как пройти до корпуса?',
-                        style: TextStyle(fontSize: 18, color: Colors.black),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                 ],
@@ -189,9 +193,9 @@ class _AudioRecorderPageState extends State<AudioRecorderPage> {
                 final path = _recordings[reverseIndex];
                 return ListTile(
                   title: Text('Recording ${reverseIndex + 1}'),
-                  subtitle: Text(path),
+                  // subtitle: Text(path),
                   trailing: IconButton(
-                    icon: Icon(Icons.play_arrow),
+                    icon: const Icon(Icons.play_arrow),
                     onPressed: () async {
                       if (_isPlaying) {
                         await audioPlayer.stop();
